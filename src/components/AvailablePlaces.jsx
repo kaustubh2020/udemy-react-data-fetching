@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Places from "./Places.jsx";
+import { fetchthAvaialblePlacess } from "../http.js";
 
 export default function AvailablePlaces({ onSelectPlace }) {
   const [isFetching, setIsFetching] = useState(false);
@@ -8,9 +9,8 @@ export default function AvailablePlaces({ onSelectPlace }) {
   useEffect(() => {
     async function fetchPlaces() {
       setIsFetching(true);
-      const response = await fetch("http://localhost:3000/places");
-      const data = await response.json();
-      setAvailablePlaces(data.places);
+      const places = await fetchthAvaialblePlacess();
+      setAvailablePlaces(places);
       setIsFetching(false);
     }
 
